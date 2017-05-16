@@ -56,7 +56,6 @@ class Room(object):
             print(self.offices)
             print('An '+room_type + ' space called ' + space_name +
                   ' has been successfully created!')
-            # print(room_name, room_type)
             return self.all_rooms['offices']
 
         elif room_type == 'living':
@@ -97,8 +96,6 @@ class Room(object):
                 livingSpace_allocated = random.choice(livingSpaces_list)
                 # add to list of that room
                 self.livingSpaces[livingSpace_allocated].append(person_name)
-
-                # print(livingSpace_allocated)
                 self.people.append(person_name)  # add to people
                 self.fellows.append(person_name)  # add to fellows
                 print(self.livingSpaces[livingSpace_allocated])  # check
