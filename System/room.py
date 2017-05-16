@@ -1,11 +1,3 @@
-"""Usage:
-  room.py create_room (office|living) <room_name>...
-  room.py add_person <person_name> <FELLOW|STAFF> [wants_accommodation]
-  room.py print_room <room_name>
-
-"""
-
-
 class Room(object):
 
     def __init__(self):
