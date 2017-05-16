@@ -4,9 +4,7 @@ from os import path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from System.room import Room
 
-
 class TestCreateRoom(unittest.TestCase):
-
     def setUp(self):
         self.class_instance = Room()
 
@@ -40,10 +38,6 @@ class TestCreateRoom(unittest.TestCase):
         # people = class_instance.people
         new_people_count = len(self.class_instance.people)
         self.assertEqual(new_people_count - initial_people_count, 4)
-
-    def test_room_allocation(self):
-        derek_add_allocate = self.class_instance.add_person(
-            "derek", "FELLOW", "Y")
 
 if __name__ == "__main__":
     unittest.main()
