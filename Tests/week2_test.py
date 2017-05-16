@@ -24,7 +24,6 @@ class TestCreateRoom(unittest.TestCase):
         green_living = self.class_instance.create_room("living", "green")
         self.assertEqual(
             'hey green_living exists, try another name', green_living)
-
         chrome_office = self.class_instance.create_room("office", "chrome")
         self.assertEqual(
             'hey chrome_office exists, try another name', chrome_office)
@@ -33,7 +32,6 @@ class TestCreateRoom(unittest.TestCase):
         invalid_room_type = self.class_instance.create_room("invalid", "green")
         self.assertEqual(
             "enter either office/living", invalid_room_type)
-
         invalid_room_type = self.class_instance.create_room("office", 11)
         self.assertEqual(
             "enter string as room_name", invalid_room_type)
