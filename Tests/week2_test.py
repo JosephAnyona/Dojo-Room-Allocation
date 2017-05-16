@@ -49,7 +49,6 @@ class TestCreateRoom(unittest.TestCase):
         self.assertTrue(jane_add)
         self.assertTrue(viktor_add)
         self.assertTrue(emily_add)
-        # people = class_instance.people
         new_people_count = len(self.class_instance.people)
         self.assertEqual(new_people_count - initial_people_count, 4)
 
@@ -59,7 +58,6 @@ class TestCreateRoom(unittest.TestCase):
         self.assertEqual(
             "Fellow derek has been successfully added with accommodation " +
             "to a living space", derek_add_allocate)
-
 
 if __name__ == "__main__":
     unittest.main()
