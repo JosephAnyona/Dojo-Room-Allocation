@@ -58,11 +58,6 @@ class Room(object):
 
         return self.all_rooms['livingSpaces']
 
-    def room_allocation(self, person_name, wants_accommodation):
-        # getting from add person
-        person_name = self.add_person.person_name
-        wants_space = "Yes" if self.add_person.wants_accommodation is "Y" else "No"
-
     def add_person(self, person_name, person_type, wants_accommodation):
         # staff - no accommodation
         wants_space = "Yes" if wants_accommodation is "Y" else "No"
