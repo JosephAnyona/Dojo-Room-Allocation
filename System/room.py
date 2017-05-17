@@ -12,15 +12,13 @@ class Room(object):
     def __init__(self):
         # rooms
         # 2 keys, offices living sapces
-        self.all_rooms = {'offices': ['chrome_office'], 'livingSpaces': [
-            'green_living', 'Naivasha_living', ], }
-        self.offices = {'chrome_office': ['sean'], 'full_office': [
-            'as', 'as', 'adsad', 'dasda', 'asda', 'asd']}
+        self.all_rooms = {'offices': [], 'livingSpaces': []}
+        self.offices = {}
 
         self.vacant_offices = ['chrome_office', 'random_office']
-        self.livingSpaces = {'green_living': ['john'], 'Naivasha_living': []}
+        self.livingSpaces = {}
         self.full_offices = []
-        self.vacant_livingSpaces = ['green_living', 'Naivasha_living']
+        self.vacant_livingSpaces = []
         self.full_living = []
         # people
         self.people = {'FELLOW': [], 'STAFF': []}
@@ -51,23 +49,24 @@ class Room(object):
             return("enter either office/living")
 
         if room_type == 'office':
-            # create new key with office name and append to offices
+            # create new key with office name and add to offices dict
             # [] to create a key with empty list of values
-            self.offices[space_name] = []
+            self.offices.update({space_name: []})
             # append new room to dictionary using key offices
             self.all_rooms['offices'].append(space_name)
-            print(self.all_rooms)
-            print(self.offices)
+            self.vacant_offices.append(space_name)
             print('An '+room_type + ' space called ' + space_name +
                   ' has been successfully created!')
-            return self.all_rooms['offices']
+            return (str(self.all_rooms['offices']))
 
         elif room_type == 'living':
             # create new key with office name and append to offices
-            self.offices[space_name] = None
+            self.livingSpaces.update({space_name: []})
             # append to all_rooms dictionary using key offices
+            # self.offices[space_name] = []
             self.all_rooms['livingSpaces'].append(space_name)
-            print(self.all_rooms)
+            # add to vacant
+            self.vacant_livingSpaces.append(space_name)
             print('A '+room_type + ' space called ' + space_name +
                   ' has been successfully created!')
 
@@ -84,7 +83,7 @@ class Room(object):
                 print(self.people)
                 print('Fellow ' + person_name +
                       ' has been successfully added with no accommodation')
-                return(self.people)
+                return(self.people['FELLOW'])
 
             elif person_type == "STAFF":
                 self.people[person_type].append(person_name)  # add to people
@@ -92,7 +91,7 @@ class Room(object):
                 print(self.people)
                 print('Staff ' + person_name +
                       ' has been successfully added')
-                return(self.people)
+                return(str(self.people['STAFF']))
 
         if wants_space == "Yes":
             if person_type == "FELLOW":
@@ -107,8 +106,7 @@ class Room(object):
                       " has been successfully added with accommodation to "
                       + livingSpace_allocated)
 
-                return("Fellow " + person_name + " has been successfully "
-                       + "added with accommodation to a living space")
+                return(str(self.people[person_type]))
 
             elif person_type == "STAFF":
                 offices_list = self.all_rooms['offices']
@@ -159,8 +157,11 @@ class Room(object):
         for keys in self.livingSpaces:
             print(keys)
             if len(self.livingSpaces[room_name]) < living_space_capacity:
-                self.vacant_living.append(room_name)
+                self.full_living.append(room_name)
                 return('living space is vacant')
             else:
                 self.vacant_livingSpaces.append(room_name)
                 return('living space is full')
+
+    def room_allocation(self):
+        pass
