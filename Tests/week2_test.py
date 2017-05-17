@@ -40,30 +40,19 @@ class TestCreateRoom(unittest.TestCase):
         initial_people_count = len(self.class_instance.people['FELLOW'])
         # multiple adds checking fellow/staff and wants accomodation
         joey_add = self.class_instance.add_person("joey", "FELLOW", "No")
-
         emily_add = self.class_instance.add_person("emily", "FELLOW", "Y") 
         self.assertTrue(joey_add)
-
         self.assertTrue(emily_add)
+        new_people_count = len(self.class_instance.people['FELLOW'])
+        self.assertEqual(new_people_count - initial_people_count, 2)        
 
-
-        new_people_count = len(self.class_instance.people['FELLOW']) 
-
-
-
-        self.assertEqual(new_people_count - initial_people_count, 2)
-
-        
         initial_people_count = len(self.class_instance.people['STAFF'])
-
         # multiple adds checking fellow/staff and wants accomodation 
         jane_add = self.class_instance.add_person("jane", "STAFF", "Y")
         viktor_add = self.class_instance.add_person("viktor", "STAFF", "No") 
         self.assertTrue(jane_add)
         self.assertTrue(viktor_add)
-
         new_people_count = len(self.class_instance.people['STAFF']) 
-
         self.assertEqual(new_people_count - initial_people_count, 2)
 
     def test_room_allocation(self):
@@ -82,8 +71,8 @@ class TestCreateRoom(unittest.TestCase):
     def test_vacant_space(self):
         full_office = self.class_instance.vacant_space("full_office")
         self.assertEqual("office full", full_office)
-        # vacant_office = self.class_instance.vacant_space("chrome_office")
-        # self.assertEqual("office vacant", vacant_office)
+        vacant_office = self.class_instance.vacant_space("chrome_office")
+        self.assertEqual("office vacant", vacant_office)
 
 
 if __name__ == "__main__":
