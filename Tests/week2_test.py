@@ -37,18 +37,34 @@ class TestCreateRoom(unittest.TestCase):
             "enter string as room_name", invalid_room_type)
 
     def test_add_person_successfully(self):
-        initial_people_count = len(self.class_instance.people)
+        initial_people_count = len(self.class_instance.people['FELLOW'])
         # multiple adds checking fellow/staff and wants accomodation
         joey_add = self.class_instance.add_person("joey", "FELLOW", "No")
-        jane_add = self.class_instance.add_person("jane", "STAFF", "Y")
-        viktor_add = self.class_instance.add_person("viktor", "STAFF", "No")
-        emily_add = self.class_instance.add_person("emily", "FELLOW", "Y")
+
+        emily_add = self.class_instance.add_person("emily", "FELLOW", "Y") 
         self.assertTrue(joey_add)
+
+        self.assertTrue(emily_add)
+
+
+        new_people_count = len(self.class_instance.people['FELLOW']) 
+
+
+
+        self.assertEqual(new_people_count - initial_people_count, 2)
+
+        
+        initial_people_count = len(self.class_instance.people['STAFF'])
+
+        # multiple adds checking fellow/staff and wants accomodation 
+        jane_add = self.class_instance.add_person("jane", "STAFF", "Y")
+        viktor_add = self.class_instance.add_person("viktor", "STAFF", "No") 
         self.assertTrue(jane_add)
         self.assertTrue(viktor_add)
-        self.assertTrue(emily_add)
-        new_people_count = len(self.class_instance.people)
-        self.assertEqual(new_people_count - initial_people_count, 4)
+
+        new_people_count = len(self.class_instance.people['STAFF']) 
+
+        self.assertEqual(new_people_count - initial_people_count, 2)
 
     def test_room_allocation(self):
         derek_add_allocate = self.class_instance.add_person(
@@ -56,6 +72,19 @@ class TestCreateRoom(unittest.TestCase):
         self.assertEqual(
             "Fellow derek has been successfully added with accommodation " +
             "to a living space", derek_add_allocate)
+
+    def test_print_room(self):
+        chrome_office_print = self.class_instance.print_room("chrome_office")
+        self.assertIn("sean", chrome_office_print)
+        green_living_print = self.class_instance.print_room("green_living")
+        self.assertIn("john", green_living_print)
+
+    def test_vacant_space(self):
+        full_office = self.class_instance.vacant_space("full_office")
+        self.assertEqual("office full", full_office)
+        # vacant_office = self.class_instance.vacant_space("chrome_office")
+        # self.assertEqual("office vacant", vacant_office)
+
 
 if __name__ == "__main__":
     unittest.main()
