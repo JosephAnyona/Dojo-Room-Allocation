@@ -14,12 +14,16 @@ class Room(object):
         # 2 keys, offices living sapces
         self.all_rooms = {'offices': ['chrome_office'], 'livingSpaces': [
             'green_living', 'Naivasha_living', ], }
-        self.offices = {'chrome_office': []}
-        self.livingSpaces = {'green_living': [], 'Naivasha_living': []}
-        self.vacant_office = []
-        self.vacant_living = []
+        self.offices = {'chrome_office': ['sean'], 'full_office': [
+            'as', 'as', 'adsad', 'dasda', 'asda', 'asd']}
+
+        self.vacant_offices = ['chrome_office', 'random_office']
+        self.livingSpaces = {'green_living': ['john'], 'Naivasha_living': []}
+        self.full_offices = []
+        self.vacant_livingSpaces = ['green_living', 'Naivasha_living']
+        self.full_living = []
         # people
-        self.people = []
+        self.people = {'FELLOW': [], 'STAFF': []}
         self.fellows = []
         self.staff = []
         # allocated
@@ -75,7 +79,7 @@ class Room(object):
 
         if wants_space == "No":
             if person_type == "FELLOW":
-                self.people.append(person_name)  # add to people
+                self.people[person_type].append(person_name)  # add to people
                 self.fellows.append(person_name)  # add to fellows
                 print(self.people)
                 print('Fellow ' + person_name +
@@ -83,7 +87,7 @@ class Room(object):
                 return(self.people)
 
             elif person_type == "STAFF":
-                self.people.append(person_name)  # add to people
+                self.people[person_type].append(person_name)  # add to people
                 self.staff.append(person_name)  # add to staff
                 print(self.people)
                 print('Staff ' + person_name +
@@ -92,11 +96,11 @@ class Room(object):
 
         if wants_space == "Yes":
             if person_type == "FELLOW":
-                livingSpaces_list = self.all_rooms['livingSpaces']
+                livingSpaces_list = self.vacant_livingSpaces
                 livingSpace_allocated = random.choice(livingSpaces_list)
                 # add to list of that room
                 self.livingSpaces[livingSpace_allocated].append(person_name)
-                self.people.append(person_name)  # add to people
+                self.people[person_type].append(person_name)  # add to people
                 self.fellows.append(person_name)  # add to fellows
                 print(self.livingSpaces[livingSpace_allocated])  # check
                 print("Fellow " + person_name +
@@ -114,7 +118,7 @@ class Room(object):
                 self.offices
                 print(office_allocated)
                 print(self.offices[office_allocated])
-                self.people.append(person_name)  # add to people
+                self.people[person_type].append(person_name)  # add to people
                 self.staff.append(person_name)  # add to staff
                 print(self.people)
                 print('Staff can not be given accommodation')
@@ -122,3 +126,41 @@ class Room(object):
                       ' has been successfully added to ' + office_allocated)
                 return('Staff ' + person_name +
                        ' has been successfully added to an office')
+
+    def print_room(self, room_name):
+        if type(room_name) is not str:
+            return("enter string as room_name")
+
+        # if room_name is offices
+        for keys in self.offices:
+            print(keys)
+            if room_name in keys:
+                print(self.offices[room_name])
+                return(self.offices[room_name])
+        # if room_name is living
+        for keys in self.livingSpaces:
+            print(keys)
+            if room_name in keys:
+                print(self.livingSpaces[room_name])
+                return(self.livingSpaces[room_name])
+
+    def vacant_space(self, room_name):
+        office_capacity = 6
+        living_space_capacity = 4
+        # for offices
+        for keys in self.offices:
+            print(keys)
+            if len(self.offices[room_name]) < office_capacity:
+                self.vacant_offices.append(room_name)
+                return('office vacant')
+            else:
+                self.full_offices.append(room_name)
+                return('office full')
+        for keys in self.livingSpaces:
+            print(keys)
+            if len(self.livingSpaces[room_name]) < living_space_capacity:
+                self.vacant_living.append(room_name)
+                return('living space is vacant')
+            else:
+                self.vacant_livingSpaces.append(room_name)
+                return('living space is full')
