@@ -1,4 +1,4 @@
-from rooms import Room, Office, LivingSpace
+from rooms import Room, Office, LivingSpace
 from person import Person, Fellow, Staff
 import random
 
