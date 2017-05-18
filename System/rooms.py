@@ -1,5 +1,4 @@
 class Room(object):
-
     # Creates Room object where the class Office and Livingspace inherit from
     def __init__(self, name):
         self.name = name
