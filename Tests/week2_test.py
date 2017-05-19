@@ -1,5 +1,6 @@
 import unittest
-import sys
+import sys
+
 from os import path
 sys.path.append('../System')
 from dojo import Dojo
@@ -24,11 +25,13 @@ class TestCreateRoom(unittest.TestCase):
         green_living1 = self.class_instance.create_room(
             "living", ["green"])  # no hardcode
         green_living2 = self.class_instance.create_room(
-            "living", ["green"])
+            "living", ["green"])
+
         self.assertEqual(len(self.class_instance.livingSpaces), 1) 
 
         chrome_office1 = self.class_instance.create_room("office", ["chrome"])
-        chrome_office2 = self.class_instance.create_room("office", ["chrome"])
+        chrome_office2 = self.class_instance.create_room("office", ["chrome"])
+
         self.assertEqual(len(self.class_instance.offices), 1)
 
     def test_room_invalid__room_type(self):
@@ -44,14 +47,16 @@ class TestCreateRoom(unittest.TestCase):
         initial_people_count = len(self.class_instance.people['fellow'])
         self.class_instance.add_person("joey", "fellow", "No")
         self.class_instance.add_person("emily", "fellow", "Y")
-        new_people_count = len(self.class_instance.people['fellow'])
+        new_people_count = len(self.class_instance.people['fellow'])
+
         #check if there has been any additions 
         self.assertEqual(new_people_count - initial_people_count, 2)
         # multiple adds checking fellow/staff and wants accomodation
         initial_people_count = len(self.class_instance.people['staff'])
         jane_add = self.class_instance.add_person("jane", "staff", "Y")
         viktor_add = self.class_instance.add_person("viktor", "staff", "No")
-        new_people_count = len(self.class_instance.people['staff'])
+        new_people_count = len(self.class_instance.people['staff'])
+
         #check if there has been any additions  
         self.assertEqual(new_people_count - initial_people_count, 2)
 
@@ -71,8 +76,11 @@ class TestCreateRoom(unittest.TestCase):
         add_person = self.class_instance.add_person(
             "emily", "fellow", "y")  # should be added
         add_room
-        add_person
-        print(self.class_instance.livingSpaces)
+        add_person
+
+
+        print(self.class_instance.livingSpaces)
+
         print(self.class_instance.fellows) 
         self.assertIn("emily", self.class_instance.livingSpaces["mara_living"])
         print_room = self.class_instance.print_room
