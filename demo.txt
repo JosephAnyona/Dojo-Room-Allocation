@@ -1,0 +1,28 @@
+(dojo)create_room living blue
+enter either office/living
+A living space called blue_living has been successfully created!
+(dojo)add_person joseph anyona staff y
+no offices
+(dojo)create_room office red
+enter either office/living
+ try another name
+An office space called red_office has been successfully created!
+(dojo)add_person joseph anyona staff y
+Staff joseph anyona has been successfully added to red_office
+(dojo)add_person Jeremy gichay staff y
+Staff Jeremy gichay has been successfully added to red_office
+(dojo)print_allocated
+{'red_office': ['joseph anyona', 'Jeremy gichay']}
+red_office
+['joseph anyona', 'Jeremy gichay']
+blue_living
+[]
+(dojo)print unallocated
+*** Unknown syntax: print unallocated
+(dojo)print_unallocated
+{'fellow': [], 'staff': [<person.Staff object at 0x000001EB9858F470>]}
+unallocated fellows
+[]
+unallocated staff
+[<person.Staff object at 0x000001EB9858F470>]
+(dojo)    2.dojo add_person <first_name> <last_name> <person_type> <wants_space>
