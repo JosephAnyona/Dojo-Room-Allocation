@@ -12,10 +12,10 @@ Running the program
     
     
 Usage
-    1.dojo create_room <room_type> <room_name>...
-    2.dojo add_person <first_name> <last_name> <person_type> <wants_space>
-    3.dojo print_allocated
-    4.dojo print_unallocated
+1.dojo create_room <room_type> <room_name>...
+2.dojo add_person <first_name> <last_name> <person_type> <wants_space>
+3.dojo print_allocated
+4.dojo print_unallocated
     
 Testing
     -go to Tests and open cmd
